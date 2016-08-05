@@ -27,6 +27,8 @@ namespace PI_DruckWarnung
     {
 
         public string PrinterName { get; set; }
+        public string JobName { get; set; }
+        public string JobPages { get; set; }
 
 
         public string DruckerKontrolle()
@@ -36,25 +38,23 @@ namespace PI_DruckWarnung
             var printerQuery = new ManagementObjectSearcher("SELECT * from Win32_Printer");
             foreach (var printer in printerQuery.Get())
             {
-                var name = printer.GetPropertyValue("Name");
-                string DruckerName = name.ToString();
-                var status = printer.GetPropertyValue("Status");
+               
+                                
                 var isDefault = printer.GetPropertyValue("Default");
                 string DefaultDrucker = isDefault.ToString();
-                var isNetworkPrinter = printer.GetPropertyValue("Network");
+               
 
 
 
                 if (DefaultDrucker == "True")
                 {
-                    this.PrinterName = DruckerName;
-
-
+                    this.PrinterName = (string)printer.GetPropertyValue("Name");
                 }
             }
-            return PrinterName;
-
+            return this.PrinterName;
 
         }
+
+        
     }
 }
