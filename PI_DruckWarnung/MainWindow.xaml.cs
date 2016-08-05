@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Management;
 
 namespace PI_DruckWarnung
 {
@@ -20,6 +21,9 @@ namespace PI_DruckWarnung
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,6 +33,8 @@ namespace PI_DruckWarnung
         {
             WarnFenster Warnung = new WarnFenster();
             Warnung.Show();
+         
+            
         }
     }
 }

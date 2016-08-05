@@ -22,6 +22,8 @@ namespace PI_DruckWarnung
         public WarnFenster()
         {
             InitializeComponent();
+            ReadDruckerInfo info = new ReadDruckerInfo();                        
+            lblDrucker.Content = info.DruckerKontrolle();
         }
     }
 }

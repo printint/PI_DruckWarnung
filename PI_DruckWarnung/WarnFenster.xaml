@@ -16,7 +16,7 @@
             <Label x:Name="lblDrucker" Content="DRUCKER" HorizontalAlignment="Center" Margin="10,20,10,0" VerticalAlignment="Top" FontSize="72" FontWeight="Bold"/>
             <Label x:Name="lblFarbmodus" Content="FARBIGKEIT" HorizontalAlignment="Center" Margin="10,148,10,0" VerticalAlignment="Top" FontSize="72" FontWeight="Bold"/>
         </Grid>
-        <Label x:Name="lblInfo" Content="BITTE KONTROLLIEREN SIE IHRE EINGABE!" HorizontalAlignment="Center" Margin="74,69,64,0" VerticalAlignment="Top" FontSize="40" FontWeight="Bold"/>
+        <Label x:Name="lblInfo" Content="BITTE KONTROLLIEREN SIE IHRE EINGABE!" HorizontalAlignment="Center" Margin="10,69,10,0" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Width="Auto"/>
 
     </Grid>
 </Window>
