@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Management;
 
 namespace PI_DruckWarnung
 {
@@ -22,8 +23,58 @@ namespace PI_DruckWarnung
         public WarnFenster()
         {
             InitializeComponent();
-            ReadDruckerInfo info = new ReadDruckerInfo();                        
-            lblDrucker.Content = info.DruckerKontrolle();
+            //ReadDruckerInfo info = new ReadDruckerInfo();                        
+            //lblDrucker.Content = info.DruckerKontrolle();
+            GetPrinterJobs();
+          
+
+
+    }
+        private void GetPrinterJobs()
+        {
+            string wmiQuery = "SELECT * FROM Win32_PrintJob";
+            ManagementObjectSearcher jobsSearcher = new ManagementObjectSearcher(wmiQuery);
+            ManagementObjectCollection jobCollection = jobsSearcher.Get();
+           
+
+            foreach (ManagementObject mo in jobCollection)
+            {
+                if (Convert.ToUInt32(mo["TotalPages"]) > 0)
+                {
+                    //PrintJob printJob = new PrintJob();
+                    //printJob.Caption = (string)mo["Caption"];
+                    //printJob.DataType = (string)mo["DataType"];
+                    //printJob.Description = (string)mo["Description"];
+                    //printJob.Document = (string)mo["Document"];
+                    //printJob.DriverName = (string)mo["DriverName"];
+                    //printJob.ElapsedTime = (string)mo["ElapsedTime"];
+                    //printJob.HostPrintQueue = (string)mo["HostPrintQueue"];
+                    //printJob.InstallDate = (string)mo["InstallDate"];
+                    //printJob.JobId = Convert.ToUInt32(mo["JobId"]);
+                    //printJob.JobStatus = (string)mo["JobStatus"];
+                    //printJob.Name = (string)mo["Name"];
+                    //printJob.Notify = (string)mo["Notify"];
+                    //printJob.Owner = (string)mo["Owner"];
+                    //printJob.PagesPrinted = Convert.ToUInt32(mo["PagesPrinted"]);
+                    //printJob.Parameters = (string)mo["Parameters"];
+                    //printJob.PrintProcessor = (string)mo["PrintProcessor"];
+                    //printJob.Priority = Convert.ToUInt32(mo["Priority"]);
+                    //printJob.Size = Convert.ToUInt32(mo["Size"]);
+                    //printJob.StartTime = (string)mo["StartTime"];
+                    //printJob.Status = (string)mo["Status"];
+                    //printJob.StatusMask = Convert.ToUInt32(mo["StatusMask"]);
+                    //printJob.TimeSubmitted = (string)mo["TimeSubmitted"];
+                    //printJob.TotalPages = Convert.ToUInt32(mo["TotalPages"]);
+                    //printJob.UntilTime = (string)mo["UntilTime"];
+
+                    lblDrucker.Content = (string)mo["Name"];
+                    lblFarbmodus.Content = Convert.ToUInt32(mo["TotalPages"]);
+                }
+            }
+
+            
+
         }
+
     }
 }
