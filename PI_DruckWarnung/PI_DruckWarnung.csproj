@@ -57,7 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\ReadDruckerInfo.cs" />
+    <Compile Include="Classes\GlobalVar.cs" />
     <Compile Include="WarnFenster.xaml.cs">
       <DependentUpon>WarnFenster.xaml</DependentUpon>
     </Compile>

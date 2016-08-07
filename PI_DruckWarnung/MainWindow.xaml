@@ -8,7 +8,6 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Button x:Name="button" Content="TestWarnWindow" HorizontalAlignment="Left" Margin="195,205,0,0" VerticalAlignment="Top" Width="132" Click="button_Click"/>
-        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="272,134,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
         <Label x:Name="lbl_test" Content="Label" HorizontalAlignment="Left" Margin="172,70,0,0" VerticalAlignment="Top"/>
 
     </Grid>

@@ -32,6 +32,7 @@ namespace PI_DruckWarnung
     }
         private void GetPrinterJobs()
         {
+            UInt32 totalPages = 0;
             string wmiQuery = "SELECT * FROM Win32_PrintJob";
             ManagementObjectSearcher jobsSearcher = new ManagementObjectSearcher(wmiQuery);
             ManagementObjectCollection jobCollection = jobsSearcher.Get();
@@ -68,13 +69,24 @@ namespace PI_DruckWarnung
                     //printJob.UntilTime = (string)mo["UntilTime"];
 
                     lblDrucker.Content = (string)mo["Name"];
-                    lblFarbmodus.Content = Convert.ToUInt32(mo["TotalPages"]);
+                    totalPages += (uint)(mo["TotalPages"]);
                 }
             }
 
-            
+            lblFarbmodus.Content = totalPages;
 
         }
 
+        private void btnAuftragBestaetigt_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalVar.checkDruckActive = false;
+            this.Close();
+        }
+
+        private void btn_AuftragAbbrechen_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalVar.checkDruckActive = false;
+            this.Close();
+        }
     }
 }

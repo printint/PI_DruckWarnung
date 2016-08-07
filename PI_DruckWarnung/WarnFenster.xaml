@@ -8,8 +8,8 @@
         Title="WarnFenster" Height="758.306" Width="955.864" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid HorizontalAlignment="Stretch" Width="auto" Height="161" Margin="10,0,10,10" VerticalAlignment="Bottom">
-            <Button x:Name="button" Content="Ich habe den RICHTIGEN Drucker gewählt und möchte den Auftrag drucken!" HorizontalAlignment="Stretch" Margin="10,5,10,0" VerticalAlignment="Top" Width="Auto" Height="72" Background="LimeGreen" FontSize="18" FontWeight="Bold"/>
-            <Button x:Name="button1" Content="Ich habe den FALSCHEN DRUCKER gewählt und möchtre den Auftrag Abbrechen" HorizontalAlignment="Stretch" Margin="10,79,10,0" VerticalAlignment="Top" Width="Auto" Height="72" Background="DarkRed" Foreground="White" FontSize="18" FontWeight="Bold"/>
+            <Button x:Name="btnAuftragBestaetigt" Content="Ich habe den RICHTIGEN Drucker gewählt und möchte den Auftrag drucken!" HorizontalAlignment="Stretch" Margin="10,5,10,0" VerticalAlignment="Top" Width="Auto" Height="72" Background="LimeGreen" FontSize="18" FontWeight="Bold" Click="btnAuftragBestaetigt_Click"/>
+            <Button x:Name="btn_AuftragAbbrechen" Content="Ich habe den FALSCHEN DRUCKER gewählt und möchtre den Auftrag Abbrechen" HorizontalAlignment="Stretch" Margin="10,79,10,0" VerticalAlignment="Top" Width="Auto" Height="72" Background="DarkRed" Foreground="White" FontSize="18" FontWeight="Bold" Click="btn_AuftragAbbrechen_Click"/>
         </Grid>
         <Grid HorizontalAlignment="Stretch" Height="84" Margin="10,10,10,0" VerticalAlignment="Bottom" Width="Auto"/>
         <Grid HorizontalAlignment="Stretch" Height="340" Margin="10,218,10,171" VerticalAlignment="Center" Width="Auto">
