@@ -24,14 +24,10 @@ namespace PI_DruckWarnung
     /// </summary>
     public partial class MainWindow : Window
     {
-        static bool checkIt = false;
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            WarnFenster Warnung = new WarnFenster();
-            Warnung.Show();
-        }
+       
+       
 
-       // bool checkIt = false;
+      
 
         public static void DruckerKontrolle()
         {
@@ -47,25 +43,61 @@ namespace PI_DruckWarnung
                 //           new Action(() =>
                 //           {
                 //           }));
+                
+                
 
-                                
+                var printerQuery = new ManagementObjectSearcher("SELECT * from Win32_Printer");
+                foreach (var printer in printerQuery.Get())
+                {
+                    var name = printer.GetPropertyValue("Name");
+
+                    string DruckerName = name.ToString();
+                    var status = printer.GetPropertyValue("Status");
+                    var isDefault = printer.GetPropertyValue("Default");
+                    string DefaultDrucker = isDefault.ToString();
+                    var isNetworkPrinter = printer.GetPropertyValue("Network");
+
+
+
+                    if (DefaultDrucker == "True")
+                    {
+                        GlobalVar.PrinterName = DruckerName;
+                    }
+
+
+                }
+
+
                                string wmiQuery = "SELECT * FROM Win32_PrintJob";
                                ManagementObjectSearcher jobsSearcher = new ManagementObjectSearcher(wmiQuery);
                                ManagementObjectCollection jobCollection = jobsSearcher.Get();
                                foreach (ManagementObject mo in jobCollection)
                                {
                                    
-                                   if ((Convert.ToUInt32(mo["TotalPages"]) > 0) && (GlobalVar.checkDruckActive == false))
+                                   if ((Convert.ToUInt32(mo["TotalPages"]) > 0) && (GlobalVar.CheckDruckActive == false))
                                    {
 
-                                        Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
-                                        new Action(() =>
+
+                                        foreach (var job in LocalPrintServer.GetDefaultPrintQueue().GetPrintJobInfoCollection())
+                                        {
+
+
+                                            using (PrintServer ps = new PrintServer())
+                                            {
+                                                using (PrintQueue Warteschlange = new PrintQueue(ps, GlobalVar.PrinterName, PrintSystemDesiredAccess.AdministratePrinter))
+                                                {
+                                                    Warteschlange.Pause();
+                                                }
+                                            }
+                                        }
+
+                                        Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
                                         {
                                                  WarnFenster Warnung = new WarnFenster();
                                                  Warnung.Show();
                                         }));
 
-                                        GlobalVar.checkDruckActive = true;
+                                        GlobalVar.CheckDruckActive = true;
                                    }
                                }
                                

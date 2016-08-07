@@ -32,7 +32,11 @@ namespace PI_DruckWarnung
     }
         private void GetPrinterJobs()
         {
+
+
+
             UInt32 totalPages = 0;
+            
             string wmiQuery = "SELECT * FROM Win32_PrintJob";
             ManagementObjectSearcher jobsSearcher = new ManagementObjectSearcher(wmiQuery);
             ManagementObjectCollection jobCollection = jobsSearcher.Get();
@@ -40,8 +44,8 @@ namespace PI_DruckWarnung
 
             foreach (ManagementObject mo in jobCollection)
             {
-                if (Convert.ToUInt32(mo["TotalPages"]) > 0)
-                {
+                //if (Convert.ToUInt32(mo["TotalPages"]) > 0)
+                //{
                     //PrintJob printJob = new PrintJob();
                     //printJob.Caption = (string)mo["Caption"];
                     //printJob.DataType = (string)mo["DataType"];
@@ -70,7 +74,7 @@ namespace PI_DruckWarnung
 
                     lblDrucker.Content = (string)mo["Name"];
                     totalPages += (uint)(mo["TotalPages"]);
-                }
+                //}
             }
 
             lblFarbmodus.Content = totalPages;
@@ -79,13 +83,13 @@ namespace PI_DruckWarnung
 
         private void btnAuftragBestaetigt_Click(object sender, RoutedEventArgs e)
         {
-            GlobalVar.checkDruckActive = false;
+            GlobalVar.CheckDruckActive = false;
             this.Close();
         }
 
         private void btn_AuftragAbbrechen_Click(object sender, RoutedEventArgs e)
         {
-            GlobalVar.checkDruckActive = false;
+            GlobalVar.CheckDruckActive = false;
             this.Close();
         }
     }

@@ -8,6 +8,7 @@ namespace PI_DruckWarnung
 {
     public static class GlobalVar
     {
-        public static bool checkDruckActive { get; set; }
+        public static bool CheckDruckActive { get; set; }
+        public static string PrinterName { get; set; }
     }
 }
