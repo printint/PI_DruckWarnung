@@ -72,8 +72,9 @@ namespace PI_DruckWarnung
                     //printJob.TotalPages = Convert.ToUInt32(mo["TotalPages"]);
                     //printJob.UntilTime = (string)mo["UntilTime"];
 
-                    lblDrucker.Content = (string)mo["Name"];
-                    totalPages += (uint)(mo["TotalPages"]);
+                    lblDrucker.Content = (string)mo["Status"];
+                    //totalPages = (uint)(mo["TotalPages"]);
+                totalPages = (uint)(mo["PagesPrinted"]);
                 //}
             }
 
